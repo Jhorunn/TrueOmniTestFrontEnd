@@ -1,0 +1,54 @@
+<div  *ngIf="showSpinner" class="container-spinner">
+  <div class="spinner" ></div>
+</div>
+
+
+
+<div  class="main-container">
+    <h1>True Omni Test - Carlos Ramos Pérez</h1>
+
+    <div [className]="'scroll-container scroll-container-y'" *ngIf="classBoolean" >
+      <div infiniteScroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="50"
+            [infiniteScrollContainer]="'.scroll-container'"
+            [fromRoot]="true"
+            (scrolled)="onScroll()">
+
+          <div [className]="'container'">
+            <div *ngFor="let item of companies">
+              <app-companies-card [company]="item"></app-companies-card>
+            </div>
+          </div>
+     </div>
+    </div>
+
+    <div [className]="'scroll-container scroll-container-x'" *ngIf="!classBoolean">
+      <div infiniteScroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="50"
+            [infiniteScrollContainer]="'.scroll-container'"
+            [fromRoot]="true"
+            [horizontal]="true"
+            (scrolled)="onScroll()">
+
+          <div [className]="'container container-x'">
+            <div *ngFor="let item of companies">
+              <app-companies-card [company]="item"></app-companies-card>
+            </div>
+          </div>
+     </div>
+    </div>
+
+    <div class="foot-page">
+      <a>Page: {{page}} - Total: {{companies.length}}</a>
+    </div>
+    <div class="div-button">
+      <button (click)="changeContainer()">{{classBoolean ? 'Landscape' : 'Portrait'}}</button>
+    </div>
+
+
+</div>
+
+<!-- [className]="classBoolean ? 'container' : 'container container-x'" -->
+<!-- [className]="classBoolean ? 'scroll-container scroll-container-y' : 'scroll-container scroll-container-x'" -->
